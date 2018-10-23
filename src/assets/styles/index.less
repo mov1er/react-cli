@@ -1,0 +1,51 @@
+#root{
+  height: 100vh;
+  overflow: hidden;
+}
+.wrapper{
+  width: 100%;
+  height: 100%;
+}
+.app{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  .header{
+    flex-shrink: 0;
+  }
+  .layout {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-grow: 1;
+    background: rgb(235, 236, 236);
+    flex-direction: column;
+  }
+  .content{
+    flex-grow: 1;
+    padding: 16px;
+    background: #fff;
+    display: flex;
+    height: calc(~'100vh - 104px');
+    flex-direction: column;
+  }
+  .page_title{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    a{
+      float: right;
+      font-size: 14px;
+    }
+  }
+  .page_cont{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .ant-tabs{
+    height: 40px;
+    .ant-tabs-bar{
+      margin-bottom: 0;
+    }
+  }
+}
