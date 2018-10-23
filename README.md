@@ -6,3 +6,13 @@
 
 ### `npm run build` 项目打包发布
 
+## Skill/技术栈
+
+- react
+- react-redux
+- react-router
+- vue-router
+- antd
+- express 
+- mockjs
+
