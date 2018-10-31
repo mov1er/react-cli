@@ -5,10 +5,10 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../assets/styles/views/login.less';
+import './login.less';
 import { Input, Icon, Button, Form, Checkbox, Spin, message } from 'antd';
-import { setUser } from '../store/actions/loggedUserAction';
-import http from '../utils/http';
+import { setUser } from '../../store/actions/loggedUserAction';
+import http from '../../utils/http';
 
 const FormItem = Form.Item;
 
@@ -36,7 +36,7 @@ const Login = Form.create()(
               sessionStorage.setItem('token', '123');
               sessionStorage.setItem('userInfo', JSON.stringify(res.userInfo));
               message.success('登陆成功，即将跳转', () => {
-                this.props.history.replace('/home');
+                this.props.history.replace('/');
               });
             }
           })

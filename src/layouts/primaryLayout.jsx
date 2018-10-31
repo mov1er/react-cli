@@ -4,33 +4,53 @@
  * @About: 主页路由layout 
  */
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router';
-import App from '../App';
-import NoMatch from '../views/404';
-import Dashboard from '../views/Dashboard';
-import UsageStatistics from '../views/usageStatistics';
-import ParameterConfig from '../views/parameterConfig';
-import InterfaceConfig from '../views/interfaceConfig';
-import InterfaceAdd from '../views/interfaceAdd';
-import InterfaceDetail from '../views/interfaceDetail';
+import { Route, Switch } from 'react-router';
+import NotFound from '../views/Exception/404';
+import AuthorizedRoute from '../components/Authorized';
+import { getRouterData } from '../router/index';
+import MyMenu from '../components/Menu/index';
+import Header from '../components/Header/index';
+import { getMenuData } from '../router/menu';
 
-const PrimaryLayout = ({ match }) => (
-  <div className="wrapper">
-    <App>
-      <Switch >
-        <Route exact path={`/`} component={Dashboard} />
-        <Route path="/Dashboard" component={Dashboard} />
-        <Route path={`/ParameterConfig`} component={ParameterConfig} />
-        <Route path={`/InterfaceConfig`} exact component={InterfaceConfig} />
-        <Route path={`/InterfaceConfig/InterfaceAdd`} exact component={InterfaceAdd} />
-        <Route path={`/InterfaceConfig/Interface/:interfaceId`} component={InterfaceAdd} />
-        <Route path={`/InterfaceConfig/InterfaceDetail/:interfaceId`} component={InterfaceDetail} />
-        <Route path={`/UsageStatistics`} component={UsageStatistics}></Route>
-        <Route component={NoMatch}/>
-        {/* <Redirect to={`${match.url}`} /> */}
-      </Switch>
-    </App>
-  </div>
-)
+let routerArr = getRouterData();
+
+class PrimaryLayout extends React.PureComponent {
+  state = {
+    menuCollapsed: false
+  }
+  toggleCollapsed = () => {
+    this.setState({
+      menuCollapsed: !this.state.menuCollapsed
+    });
+  }
+  render() {
+    return (
+      <div className="wrapper">
+        <div className="app">
+          <MyMenu collapsed={this.state.menuCollapsed} menusData={getMenuData()}></MyMenu>
+          <div className="layout">
+            <Header handleClick={this.toggleCollapsed} collapsed={this.state.menuCollapsed}></Header>
+            <div className="content">
+              <Switch >
+                {routerArr.map(item => (
+                  <AuthorizedRoute
+                    key={item.path}
+                    path={item.path}
+                    component={item.component}
+                    exact={item.exact}
+                    authority={item.authority}
+                    redirectPath="/exception/403"
+                  />
+                ))}
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    )
+  }
+}
 
 export default PrimaryLayout;

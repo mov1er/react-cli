@@ -25,7 +25,7 @@ router.post('/login', function (req, res) {
   res.json({
     code: 1,
     message: '登陆成功',
-    userInfo: Mock.mock({ name: req.body.userName, 'age|1-100': 100, avatar: Random.image('100x100'), uid: '@id' })
+    userInfo: Mock.mock({ name: req.body.userName, 'age|1-100': 100, avatar: Random.image('100x100'), uid: '@id', role: 'guest' })
   });
 });
 

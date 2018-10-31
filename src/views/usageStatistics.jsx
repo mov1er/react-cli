@@ -5,7 +5,6 @@
  */
 import React, { Component } from 'react';
 import { Button, Select, Row, Col, Radio, DatePicker, Table } from 'antd';
-import '../assets/styles/views/usageStatistics.less';
 import http from '../utils/http';
 import { message } from 'antd';
 import { Spin } from 'antd';

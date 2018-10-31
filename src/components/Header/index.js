@@ -5,8 +5,8 @@
  */
 import React, { Component } from 'react';
 import { Menu, Dropdown, Icon, Modal } from 'antd';
-import '../assets/styles/components/header.less';
-import history from '../utils/history';
+import './header.less';
+import history from '../../utils/history';
 import { connect } from 'react-redux';
 
 const confirm = Modal.confirm;

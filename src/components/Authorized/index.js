@@ -3,12 +3,12 @@
  * @Date: 2018-04-20 14:49:58 
  * @About: 登陆后路由 
  */
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import { setUser } from './store/actions/loggedUserAction';
+import { setUser } from '../../store/actions/loggedUserAction';
 
-class AuthorizedRoute extends Component {
+class AuthorizedRoute extends React.PureComponent {
   state = {
     isLogin: false
   }
@@ -27,15 +27,14 @@ class AuthorizedRoute extends Component {
   }
 
   render() {
-    const { component: Component, pending, ...rest } = this.props;
+    const { component: Component, pending, authority, redirectPath, userInfo, ...rest } = this.props;
     const { isLogin } = this.state;
 
     return (
       <Route {...rest} render={props => {
-        // if (pending) return <div>Loading...</div>
         return isLogin
           ? <Component {...props} />
-          : <Redirect to="/login" />
+          : <Redirect to={redirectPath} />
       }} />
     )
   }
