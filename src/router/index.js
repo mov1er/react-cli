@@ -6,7 +6,8 @@ export const getRouterData = app => {
   const routerConfig = {
     '/': {
       exact: true,
-      component: asyncComponent(() => import("../views/Dashboard"))
+      name: 'home',
+      component: asyncComponent(() => import("../views/home"))
     },
     '/Dashboard': {
       exact: true,
@@ -26,10 +27,12 @@ export const getRouterData = app => {
     },
     '/Config/InterfaceConfig/InterfaceAdd': {
       exact: true,
+      name: '新增接口',
       component: asyncComponent(() => import("../views/interfaceAdd"))
     },
     '/Config/InterfaceConfig/interfaceDetail/:id': {
       exact: false,
+      name: '接口详情',
       component: asyncComponent(() => import("../views/interfaceDetail"))
     },
     // '/Config/InterfaceConfig/interface/:id': {
@@ -38,14 +41,17 @@ export const getRouterData = app => {
     // },
     '/exception/403': {
       exact: true,
+      name: '403',
       component: asyncComponent(() => import("../views/Exception/403"))
     },
     '/exception/404': {
       exact: true,
+      name: '404',
       component: asyncComponent(() => import("../views/Exception/404"))
     },
     '/exception/500': {
       exact: false,
+      name: '500',
       component: asyncComponent(() => import("../views/Exception/500"))
     },
   };
@@ -88,6 +94,7 @@ export const getRouterData = app => {
     routerData[i].path = i;
     routerArr.push(routerData[i])
   }
+  console.log(routerArr);
 
   return routerArr;
 };

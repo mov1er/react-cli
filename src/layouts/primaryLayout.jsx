@@ -11,6 +11,7 @@ import { getRouterData } from '../router/index';
 import MyMenu from '../components/Menu/index';
 import Header from '../components/Header/index';
 import { getMenuData } from '../router/menu';
+import pathToRegexp from 'path-to-regexp';
 
 let routerArr = getRouterData();
 
@@ -24,6 +25,14 @@ class PrimaryLayout extends React.PureComponent {
     });
   }
   render() {
+    const { location } = this.props;
+    for(let i in routerArr) {
+      var re = pathToRegexp(routerArr[i].path)
+      if(re.exec(location.pathname)) {
+        document.title = routerArr[i].name + ' - CRM';
+      }
+    }
+
     return (
       <div className="wrapper">
         <div className="app">
