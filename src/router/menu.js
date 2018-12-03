@@ -3,30 +3,36 @@ import { isUrl } from '../utils/utils';
 const menuData = [
   {
     name: 'Dashboard',
+    title: 'Dashboard',
     icon: 'area-chart',
     path: 'Dashboard',
     authority: 'guest',
   },
   {
-    name: '统计分析',
+    name: 'Statistics',
+    title: '统计分析',
     icon: 'table',
     path: 'Statistics',
     authority: 'guest',
     children: [{
-      name: '使用情况统计',
+      name: 'UsageStatistics',
+      title: '使用情况统计',
       path: 'UsageStatistics'
     }]
   }, {
-    name: '管理配置',
+    name: 'Config',
+    title: '管理配置',
     icon: 'appstore',
     path: 'Config',
     authority: 'admin',
     children: [
     {
-      name: '接口配置',
+      name: 'InterfaceConfig',
+      title: '接口配置',
       path: 'InterfaceConfig'
     }, {
-      name: '参数配置',
+      name: 'ParameterConfig',
+      title: '参数配置',
       path: 'ParameterConfig'
     }]
   }

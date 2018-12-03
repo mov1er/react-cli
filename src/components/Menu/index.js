@@ -63,7 +63,7 @@ class MyMenu extends Component {
       if (childrenItems && childrenItems.length > 0) {
         return (
           <SubMenu
-            title={item.icon ? (<span><Icon type={item.icon} /><span>{item.name}</span></span>) : (item.name)}
+            title={item.icon ? (<span><Icon type={item.icon} /><span>{item.title}</span></span>) : (item.title)}
             key={item.name}
           >
             {childrenItems}
@@ -76,7 +76,7 @@ class MyMenu extends Component {
         <Menu.Item key={item.name}>
           {item.icon && <Icon type={item.icon} />}
           <Link to={item.path}>
-            <span>{item.name}</span>
+            <span>{item.title}</span>
           </Link>
         </Menu.Item>
       );
@@ -106,13 +106,12 @@ class MyMenu extends Component {
       >
         <div className="logo" key="logo">
           <img src={logo} alt="logo" />
-          <h1>数据接口管理平台</h1>
+          <h1>CRM</h1>
         </div>
         <Menu
           theme="dark"
           style={{ height: '100%' }}
           mode="inline"
-          ref="menu"
           openKeys={openKeys}
           selectedKeys={selectedKeys}
           onClick={this.handleClick}
