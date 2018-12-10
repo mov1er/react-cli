@@ -6,9 +6,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './login.less';
-import { Input, Icon, Button, Form, Checkbox, Spin, message } from 'antd';
-import { setUser } from '../../store/actions/loggedUserAction';
-import http from '../../utils/http';
+import { Input, Icon, Button, Form, Checkbox, Spin } from 'antd';
+import { login } from '../../store/actions/loggedUserAction';
 
 const FormItem = Form.Item;
 
@@ -25,32 +24,21 @@ const Login = Form.create()(
         if (!err) {
           this.setState({
             loading: true
+          }, () => {
+            login(values)(this.props.dispatch);
           });
-          http.post('/login', values)
-          .then(res => {
-            this.setState({ loading: false });
-            if(res.code !== 1) {
-              message.error(`${res.err}`)
-            } else {
-              this.props.dispatch(setUser(res.userInfo));
-              sessionStorage.setItem('token', '123');
-              sessionStorage.setItem('userInfo', JSON.stringify(res.userInfo));
-              message.success('登陆成功，即将跳转', () => {
-                this.props.history.replace('/');
-              });
-            }
-          })
         }
       });
     }
+
     componentWillMount() {
       sessionStorage.removeItem('token');
     }
-  
+
     componentDidMount() {
       // this.props.dispatch('123');
     }
-  
+
     render() {
       const { getFieldDecorator } = this.props.form;
       return (
@@ -95,7 +83,7 @@ const Login = Form.create()(
 )
 
 const mapStateToProps = state => ({
-  logState: state
+  logState: state.loggedUserState
 })
 
 export default connect(mapStateToProps)(Login);

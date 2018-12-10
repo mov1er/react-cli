@@ -3,6 +3,7 @@
  * @Date: 2018-04-20 14:54:09 
  * @About: 登陆用户reducer
  */
+// eslint-disable-next-line
 import { handleActions } from 'redux-actions';
 
 const tabList = JSON.parse(sessionStorage.getItem('tabList'));
@@ -25,9 +26,7 @@ const tabReducer = handleActions({
     const list = [];
     let delIndex = 0;
     let { activeKey } = state;
-    state.list.map((tab, index) => {
-      tab.key === targetKey ? delIndex = index : list.push(tab);
-    });
+    state.list.map((tab, index) => tab.key === targetKey ? delIndex = index : list.push(tab));
     if (state.activeKey === targetKey) {
       activeKey = list[delIndex] ? list[delIndex].key : (list[delIndex - 1] ? list[delIndex -1].key : '');
     }

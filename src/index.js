@@ -15,7 +15,7 @@ import AuthorizedRoute from './components/Authorized';
 import PrimaryLayout from './layouts/primaryLayout';
 import registerServiceWorker from './registerServiceWorker';
 import { Router, Route, Switch } from 'react-router';
-
+console.log(store);
 
 ReactDOM.render(
   <Provider store={store}>

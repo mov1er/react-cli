@@ -42,7 +42,7 @@ export default class InterfaceDetail extends Component {
 
   componentDidMount() {
     this.setState({ loading: true }, () => {
-			http.post('/interface/${this.props.match.params.interfaceId}', {})
+			http.post(`/interface/${this.props.match.params.interfaceId}`, {})
 			.then(res => {
 				this.setState({ loading: false })
 				if(res.code === 1) {

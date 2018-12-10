@@ -6,7 +6,6 @@
 import React, { Component } from 'react';
 import { Button, Select, Row, Col, Table, Input, Divider, Modal, Form } from 'antd';
 import "../assets/styles/reset.less";
-import http from '../utils/http';
 
 const Option = Select.Option;
 const { TextArea } = Input;
